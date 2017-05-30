@@ -1,0 +1,14 @@
+string Query = @"INSERT INTO Produits (Nom,PrixCoutant,PrixVendant,QuantiteEnStock,Note,Fournisseur_Id) VALUES (@Nom,@PrixCoutant,@PrixVendant,@QuantiteEnStock,@Note,@Fournisseur_Id)";
+            SqlCommand cmd = new SqlCommand(Query, con);
+
+            //Aller chetcher les données.
+            int comboBoxId = Commandes.SelectIDComboBox("SELECT Id FROM Fournisseurs WHERE Nom = '" + comboBoxFournisseur.Text + "'");
+            cmd.Parameters.Add("@Nom", SqlDbType.VarChar, 80).Value = textBoxNom.Text;
+            cmd.Parameters.Add("@PrixCoutant", SqlDbType.Decimal, 80).Value = Convert.ToDecimal(textBoxPrixCoutant.Text);
+            cmd.Parameters.Add("@PrixVendant", SqlDbType.Decimal, 80).Value = Convert.ToDecimal(textBoxPrixVendant.Text);
+            cmd.Parameters.Add("QuantiteEnStock", SqlDbType.VarChar, 80).Value = Convert.ToInt32(textBoxQteInventaire.Text);
+            cmd.Parameters.Add("@Note", SqlDbType.VarChar, 80).Value = richTextBoxNote.Text;
+            cmd.Parameters.Add("@Fournisseur_Id", SqlDbType.Int, 80).Value = comboBoxId;
+            con.Open();
+            cmd.ExecuteNonQuery();
+            MessageBox.Show("Insertion du produit réussie.");

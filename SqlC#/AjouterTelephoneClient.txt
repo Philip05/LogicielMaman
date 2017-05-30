@@ -1,0 +1,45 @@
+SqlConnection con = new SqlConnection(Properties.Settings.Default.DossierPatientsConnectionString);
+            SqlCommand cmd;
+            string Query = "SELECT MAX(Id) FROM Clients";
+            cmd = new SqlCommand(Query, con);
+            SqlDataReader Reader;
+            try
+            {
+                con.Open();
+                Reader = cmd.ExecuteReader();
+                while (Reader.Read())
+                {
+                    idNouveauClient = Convert.ToInt32(Reader.GetValue(0));
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            con.Close();
+            return idNouveauClient;
+
+
+
+//////Id nouveau client
+
+//SqlConnection con = new SqlConnection(Properties.Settings.Default.DossierPatientsConnectionString);
+            //SqlCommand cmd;
+            //string Query = "SELECT MAX(Id) FROM Clients";
+            //cmd = new SqlCommand(Query, con);
+            //SqlDataReader Reader;
+            //try
+            //{
+            //    con.Open();
+            //    Reader = cmd.ExecuteReader();
+            //    while (Reader.Read())
+            //    {
+            //        idNouveauClient = Convert.ToInt32(Reader.GetValue(0));
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.Message);
+            //}
+            //con.Close();
+            //return idNouveauClient;

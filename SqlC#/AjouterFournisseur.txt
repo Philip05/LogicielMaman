@@ -1,0 +1,20 @@
+  string constring = Properties.Settings.Default.DossierPatientsConnectionString; ;
+            string query = @"INSERT INTO Fournisseurs (Nom,Adresse,Actif,Note,Ville,Pays,CodePostal) VALUES (@Nom,@Adresse,@Actif,@Note,@Ville,@Pays,@CodePostal)";
+            string query2 = "INSERT INTO TelephoneFournisseurs (Telephone,Note,Fournisseur_Id) VALUES (@Telephone,@NoteTelephone,@Fournisseur_Id)";
+            SqlCommand cmd = new SqlCommand(query, con);
+
+            //Aller chercher les données.
+            cmd.Parameters.Add("@Nom", SqlDbType.VarChar, 80).Value = textBoxNom.Text;
+            cmd.Parameters.Add("@Adresse", SqlDbType.VarChar, 80).Value = textBoxAdresse.Text;
+            cmd.Parameters.Add("Actif", SqlDbType.VarChar, 80).Value = true;
+            cmd.Parameters.Add("@Note", SqlDbType.VarChar, 80).Value = richTextBoxNote.Text;
+            cmd.Parameters.Add("@Ville", SqlDbType.VarChar, 80).Value = textBoxVille.Text;
+            cmd.Parameters.Add("@Pays", SqlDbType.VarChar, 80).Value = textBoxPays.Text;
+            cmd.Parameters.Add("@CodePostal", SqlDbType.VarChar, 80).Value = textBoxCodePostal.Text;
+            con.Open();
+            cmd.ExecuteNonQuery();
+            cmd = new SqlCommand(query2, con);
+            cmd.Parameters.Add("@Telephone", SqlDbType.VarChar, 80).Value = textBoxTelephone.Text;
+            cmd.Parameters.Add("@NoteTelephone", SqlDbType.VarChar, 80).Value = richTextBoxNoteTelephone.Text;
+            cmd.Parameters.Add("@Fournisseur_Id", SqlDbType.VarChar, 80).Value = TrouverIdNouveauFournisseur();
+            cmd.ExecuteNonQuery();

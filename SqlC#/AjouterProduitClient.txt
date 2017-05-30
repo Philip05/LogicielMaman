@@ -1,0 +1,15 @@
+int ligne = dataGridViewAjourProduitsClients.CurrentCell.RowIndex;
+            Commandes.produitId = ObtenirIdProduit(ligne);
+            Commandes.quantiteProduitAchat = Convert.ToInt32(numericUpDownQuantite.Value);
+            string Query = @"INSERT INTO Achats (Note,DateAchat,Quantite,Client_Id,Produits_Id) VALUES (@Note,@DateAchat,@Quantite,@Client_Id,@Produits_Id)";
+            SqlCommand cmd = new SqlCommand(Query, con);
+
+            //Aller chetcher les données.
+            ObtenirIdProduit(ligne);
+            cmd.Parameters.Add("@Note", SqlDbType.VarChar, 80).Value = richTextBoxNote.Text;
+            cmd.Parameters.Add("@DateAchat", SqlDbType.VarChar, 80).Value = DateTime.Today;
+            cmd.Parameters.Add("@Quantite", SqlDbType.VarChar, 80).Value = numericUpDownQuantite.Value;
+            cmd.Parameters.Add("Client_Id", SqlDbType.VarChar, 80).Value = Commandes.idClient;
+            cmd.Parameters.Add("@Produits_Id", SqlDbType.VarChar, 80).Value = Commandes.produitId;
+            con.Open();
+            cmd.ExecuteNonQuery();

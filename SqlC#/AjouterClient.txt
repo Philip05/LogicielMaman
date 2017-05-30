@@ -1,0 +1,26 @@
+//string query = "INSERT INTO Clients (Nom,Prenom,Adresse,CodePostal,Courriel,DateInscription,Active,Note,Ville,Pays,Pathologie,Sexe_Id) VALUES (@Nom,@Prenom,@Adresse,@CodePostal,@Courriel,@DateInscription,@Active,@Note,@Ville,@Pays,@Pathologie,@Sexe_Id)";
+            //string query2 = "INSERT INTO TelephoneClients (Telephone,Note,Client_Id,TypeTelephones_Id) VALUES (@Telephone,@Note,@Client_Id,@TypeTelephones_Id)";
+            //SqlCommand cmd = new SqlCommand(query, con);
+
+            ////Aller chetcher les données.
+            //int comboBoxId = Commandes.SelectIDComboBox("SELECT Id FROM Sexes WHERE Categorie = '" + comboBoxSexe.Text + "'");
+            //cmd.Parameters.Add("@Nom", SqlDbType.VarChar, 80).Value = textBoxNom.Text;
+            //cmd.Parameters.Add("@Prenom", SqlDbType.VarChar, 80).Value = textBoxPrenom.Text;
+            //cmd.Parameters.Add("@Adresse", SqlDbType.VarChar, 80).Value = textBoxAdresse.Text;
+            //cmd.Parameters.Add("CodePostal", SqlDbType.VarChar, 80).Value = textBoxCodePostal.Text;
+            //cmd.Parameters.Add("@Courriel", SqlDbType.VarChar, 80).Value = textBoxCourriel.Text;
+            //cmd.Parameters.Add("@DateInscription", SqlDbType.VarChar, 80).Value = DateTime.Today;
+            //cmd.Parameters.Add("@Active", SqlDbType.Bit, 80).Value = true;
+            //cmd.Parameters.Add("@Note", SqlDbType.VarChar, 80).Value = richTextBoxNote.Text;
+            //cmd.Parameters.Add("@Ville", SqlDbType.VarChar, 80).Value = textBoxVille.Text;
+            //cmd.Parameters.Add("@Pays", SqlDbType.VarChar, 80).Value = textBoxPays.Text;
+            //cmd.Parameters.Add("@Pathologie", SqlDbType.VarChar, 80).Value = textBoxPathologie.Text;
+            //cmd.Parameters.Add("@Sexe_Id", SqlDbType.Int, 80).Value = comboBoxId;
+            //con.Open();
+            //cmd.ExecuteNonQuery();
+            //cmd = new SqlCommand(query2, con);
+            //cmd.Parameters.Add("@Telephone", SqlDbType.VarChar, 80).Value = textBoxTelephone.Text;
+            //cmd.Parameters.Add("@Note", SqlDbType.VarChar, 80).Value = richTextBoxNoteTelephone.Text;
+            //cmd.Parameters.Add("@Client_Id", SqlDbType.VarChar, 80).Value = AjoutTelephone();
+            //cmd.Parameters.Add("@TypeTelephones_Id", SqlDbType.Int, 80).Value = 1;
+            //cmd.ExecuteNonQuery();
