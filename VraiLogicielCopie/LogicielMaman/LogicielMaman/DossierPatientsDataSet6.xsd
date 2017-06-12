@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DossierPatientsDataSet6" targetNamespace="http://tempuri.org/DossierPatientsDataSet6.xsd" xmlns:mstns="http://tempuri.org/DossierPatientsDataSet6.xsd" xmlns="http://tempuri.org/DossierPatientsDataSet6.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="DossierPatientsConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="DossierPatientsConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.LogicielMaman.Properties.Settings.GlobalReference.Default.DossierPatientsConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="FournisseursTableAdapter" GeneratorDataComponentClassName="FournisseursTableAdapter" Name="Fournisseurs" UserDataComponentName="FournisseursTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="DossierPatientsConnectionString (Settings)" DbObjectName="DossierPatients.dbo.Fournisseurs" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT Nom, Adresse, Actif FROM dbo.Fournisseurs</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Nom" DataSetColumn="Nom" />
+              <Mapping SourceColumn="Adresse" DataSetColumn="Adresse" />
+              <Mapping SourceColumn="Actif" DataSetColumn="Actif" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DossierPatientsDataSet6" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="DossierPatientsDataSet6" msprop:Generator_UserDSName="DossierPatientsDataSet6">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Fournisseurs" msprop:Generator_TableClassName="FournisseursDataTable" msprop:Generator_TableVarName="tableFournisseurs" msprop:Generator_TablePropName="Fournisseurs" msprop:Generator_RowDeletingName="FournisseursRowDeleting" msprop:Generator_RowChangingName="FournisseursRowChanging" msprop:Generator_RowEvHandlerName="FournisseursRowChangeEventHandler" msprop:Generator_RowDeletedName="FournisseursRowDeleted" msprop:Generator_UserTableName="Fournisseurs" msprop:Generator_RowChangedName="FournisseursRowChanged" msprop:Generator_RowEvArgName="FournisseursRowChangeEvent" msprop:Generator_RowClassName="FournisseursRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Nom" msprop:Generator_ColumnVarNameInTable="columnNom" msprop:Generator_ColumnPropNameInRow="Nom" msprop:Generator_ColumnPropNameInTable="NomColumn" msprop:Generator_UserColumnName="Nom">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Adresse" msprop:Generator_ColumnVarNameInTable="columnAdresse" msprop:Generator_ColumnPropNameInRow="Adresse" msprop:Generator_ColumnPropNameInTable="AdresseColumn" msprop:Generator_UserColumnName="Adresse">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Actif" msprop:Generator_ColumnVarNameInTable="columnActif" msprop:Generator_ColumnPropNameInRow="Actif" msprop:Generator_ColumnPropNameInTable="ActifColumn" msprop:Generator_UserColumnName="Actif" type="xs:boolean" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

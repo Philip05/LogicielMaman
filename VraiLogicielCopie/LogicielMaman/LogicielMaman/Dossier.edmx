@@ -1,0 +1,716 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Dossier.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="DossierStoreContainer">
+    <EntitySet Name="Clients" EntityType="Dossier.Store.Clients" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TelephoneClients" EntityType="Dossier.Store.TelephoneClients" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TypeTelephones" EntityType="Dossier.Store.TypeTelephones" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Produits" EntityType="Dossier.Store.Produits" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Fournisseurs" EntityType="Dossier.Store.Fournisseurs" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TelephoneFournisseurs" EntityType="Dossier.Store.TelephoneFournisseurs" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Sexes" EntityType="Dossier.Store.Sexes" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Achats" EntityType="Dossier.Store.Achats" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Rencontres" EntityType="Dossier.Store.Rencontres" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Administrateurs" EntityType="Dossier.Store.Administrateurs" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Images" EntityType="Dossier.Store.Images" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="SexeClient" Association="Dossier.Store.SexeClient">
+      <End Role="Sexe" EntitySet="Sexes" />
+      <End Role="Client" EntitySet="Clients" />
+    </AssociationSet>
+    <AssociationSet Name="ClientTelephoneClient" Association="Dossier.Store.ClientTelephoneClient">
+      <End Role="Client" EntitySet="Clients" />
+      <End Role="TelephoneClient" EntitySet="TelephoneClients" />
+    </AssociationSet>
+    <AssociationSet Name="TelephoneClientTypeTelephone" Association="Dossier.Store.TelephoneClientTypeTelephone">
+      <End Role="TelephoneClient" EntitySet="TelephoneClients" />
+      <End Role="TypeTelephone" EntitySet="TypeTelephones" />
+    </AssociationSet>
+    <AssociationSet Name="FournisseurTelephoneFournisseur" Association="Dossier.Store.FournisseurTelephoneFournisseur">
+      <End Role="Fournisseur" EntitySet="Fournisseurs" />
+      <End Role="TelephoneFournisseur" EntitySet="TelephoneFournisseurs" />
+    </AssociationSet>
+    <AssociationSet Name="ClientRencontre" Association="Dossier.Store.ClientRencontre">
+      <End Role="Client" EntitySet="Clients" />
+      <End Role="Rencontre" EntitySet="Rencontres" />
+    </AssociationSet>
+    <AssociationSet Name="ClientAchat" Association="Dossier.Store.ClientAchat">
+      <End Role="Client" EntitySet="Clients" />
+      <End Role="Achat" EntitySet="Achats" />
+    </AssociationSet>
+    <AssociationSet Name="AchatProduit" Association="Dossier.Store.AchatProduit">
+      <End Role="Achat" EntitySet="Achats" />
+      <End Role="Produit" EntitySet="Produits" />
+    </AssociationSet>
+    <AssociationSet Name="FournisseurProduit" Association="Dossier.Store.FournisseurProduit">
+      <End Role="Fournisseur" EntitySet="Fournisseurs" />
+      <End Role="Produit" EntitySet="Produits" />
+    </AssociationSet>
+    <AssociationSet Name="ClientImage" Association="Dossier.Store.ClientImage">
+      <End Role="Client" EntitySet="Clients" />
+      <End Role="Image" EntitySet="Images" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Clients">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nom" Type="nvarchar" Nullable="false" MaxLength="150" />
+    <Property Name="Prenom" Type="nvarchar" Nullable="false" MaxLength="150" />
+    <Property Name="Adresse" Type="nvarchar" Nullable="false" MaxLength="250" />
+    <Property Name="CodePostal" Type="nvarchar" Nullable="false" MaxLength="15" />
+    <Property Name="Courriel" Type="nvarchar" Nullable="false" MaxLength="250" />
+    <Property Name="DateInscription" Type="datetime" Nullable="false" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+    <Property Name="Note" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Ville" Type="nvarchar" Nullable="false" MaxLength="250" />
+    <Property Name="Pays" Type="nvarchar" Nullable="false" MaxLength="250" />
+    <Property Name="Pathologie" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Sexe_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TelephoneClients">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Telephone" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Note" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Client_Id" Type="int" Nullable="false" />
+    <Property Name="TypeTelephones_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TypeTelephones">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Lieu" Type="nvarchar" Nullable="false" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="Produits">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nom" Type="nvarchar" Nullable="false" MaxLength="150" />
+    <Property Name="PrixCoutant" Type="float" Nullable="false" />
+    <Property Name="PrixVendant" Type="float" Nullable="false" />
+    <Property Name="QuantiteEnStock" Type="int" Nullable="false" />
+    <Property Name="Note" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Fournisseur_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Fournisseurs">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nom" Type="nvarchar" Nullable="false" MaxLength="150" />
+    <Property Name="Adresse" Type="nvarchar" Nullable="false" MaxLength="250" />
+    <Property Name="Actif" Type="bit" Nullable="false" />
+    <Property Name="Note" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Ville" Type="nvarchar" Nullable="false" MaxLength="250" />
+    <Property Name="Pays" Type="nvarchar" Nullable="false" MaxLength="250" />
+    <Property Name="CodePostal" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TelephoneFournisseurs">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Telephone" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Note" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Fournisseur_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Sexes">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Categorie" Type="nvarchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Achats">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Note" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DateAchat" Type="datetime" Nullable="false" />
+    <Property Name="Quantite" Type="float" Nullable="false" />
+    <Property Name="Client_Id" Type="int" Nullable="false" />
+    <Property Name="Produits_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Rencontres">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DateRencontre" Type="datetime" Nullable="false" />
+    <Property Name="Note" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Client_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Administrateurs">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nom" Type="nvarchar" Nullable="false" MaxLength="150" />
+    <Property Name="Prenom" Type="nvarchar" Nullable="false" MaxLength="150" />
+    <Property Name="DateInscription" Type="datetime" Nullable="false" />
+    <Property Name="Connecte" Type="bit" Nullable="false" />
+    <Property Name="MotDePasse" Type="nvarchar" Nullable="false" MaxLength="150" />
+    <Property Name="NomUtilisateur" Type="nvarchar" Nullable="false" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="Images">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SourceImage" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Client_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="SexeClient">
+    <End Role="Sexe" Type="Dossier.Store.Sexes" Multiplicity="1" />
+    <End Role="Client" Type="Dossier.Store.Clients" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sexe">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Client">
+        <PropertyRef Name="Sexe_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ClientTelephoneClient">
+    <End Role="Client" Type="Dossier.Store.Clients" Multiplicity="1" />
+    <End Role="TelephoneClient" Type="Dossier.Store.TelephoneClients" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Client">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TelephoneClient">
+        <PropertyRef Name="Client_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TelephoneClientTypeTelephone">
+    <End Role="TelephoneClient" Type="Dossier.Store.TelephoneClients" Multiplicity="*" />
+    <End Role="TypeTelephone" Type="Dossier.Store.TypeTelephones" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="TypeTelephone">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TelephoneClient">
+        <PropertyRef Name="TypeTelephones_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FournisseurTelephoneFournisseur">
+    <End Role="Fournisseur" Type="Dossier.Store.Fournisseurs" Multiplicity="1" />
+    <End Role="TelephoneFournisseur" Type="Dossier.Store.TelephoneFournisseurs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Fournisseur">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TelephoneFournisseur">
+        <PropertyRef Name="Fournisseur_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ClientRencontre">
+    <End Role="Client" Type="Dossier.Store.Clients" Multiplicity="1" />
+    <End Role="Rencontre" Type="Dossier.Store.Rencontres" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Client">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Rencontre">
+        <PropertyRef Name="Client_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ClientAchat">
+    <End Role="Client" Type="Dossier.Store.Clients" Multiplicity="1" />
+    <End Role="Achat" Type="Dossier.Store.Achats" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Client">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Achat">
+        <PropertyRef Name="Client_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="AchatProduit">
+    <End Role="Achat" Type="Dossier.Store.Achats" Multiplicity="*" />
+    <End Role="Produit" Type="Dossier.Store.Produits" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Produit">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Achat">
+        <PropertyRef Name="Produits_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FournisseurProduit">
+    <End Role="Fournisseur" Type="Dossier.Store.Fournisseurs" Multiplicity="1" />
+    <End Role="Produit" Type="Dossier.Store.Produits" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Fournisseur">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Produit">
+        <PropertyRef Name="Fournisseur_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ClientImage">
+    <End Role="Client" Type="Dossier.Store.Clients" Multiplicity="1" />
+    <End Role="Image" Type="Dossier.Store.Images" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Client">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Image">
+        <PropertyRef Name="Client_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="Dossier" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="DossierContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Clients" EntityType="Dossier.Client" />
+          <EntitySet Name="TelephoneClients" EntityType="Dossier.TelephoneClient" />
+          <EntitySet Name="TypeTelephones" EntityType="Dossier.TypeTelephone" />
+          <EntitySet Name="Produits" EntityType="Dossier.Produit" />
+          <EntitySet Name="Fournisseurs" EntityType="Dossier.Fournisseur" />
+          <EntitySet Name="TelephoneFournisseurs" EntityType="Dossier.TelephoneFournisseur" />
+          <EntitySet Name="Sexes" EntityType="Dossier.Sexe" />
+          <EntitySet Name="Achats" EntityType="Dossier.Achat" />
+          <EntitySet Name="Rencontres" EntityType="Dossier.Rencontre" />
+          <AssociationSet Name="SexeClient" Association="Dossier.SexeClient">
+            <End Role="Sexe" EntitySet="Sexes" />
+            <End Role="Client" EntitySet="Clients" />
+          </AssociationSet>
+          <AssociationSet Name="ClientTelephoneClient" Association="Dossier.ClientTelephoneClient">
+            <End Role="Client" EntitySet="Clients" />
+            <End Role="TelephoneClient" EntitySet="TelephoneClients" />
+          </AssociationSet>
+          <AssociationSet Name="TelephoneClientTypeTelephone" Association="Dossier.TelephoneClientTypeTelephone">
+            <End Role="TelephoneClient" EntitySet="TelephoneClients" />
+            <End Role="TypeTelephone" EntitySet="TypeTelephones" />
+          </AssociationSet>
+          <AssociationSet Name="FournisseurTelephoneFournisseur" Association="Dossier.FournisseurTelephoneFournisseur">
+            <End Role="Fournisseur" EntitySet="Fournisseurs" />
+            <End Role="TelephoneFournisseur" EntitySet="TelephoneFournisseurs" />
+          </AssociationSet>
+          <AssociationSet Name="ClientRencontre" Association="Dossier.ClientRencontre">
+            <End Role="Client" EntitySet="Clients" />
+            <End Role="Rencontre" EntitySet="Rencontres" />
+          </AssociationSet>
+          <AssociationSet Name="ClientAchat" Association="Dossier.ClientAchat">
+            <End Role="Client" EntitySet="Clients" />
+            <End Role="Achat" EntitySet="Achats" />
+          </AssociationSet>
+          <AssociationSet Name="AchatProduit" Association="Dossier.AchatProduit">
+            <End Role="Achat" EntitySet="Achats" />
+            <End Role="Produit" EntitySet="Produits" />
+          </AssociationSet>
+          <AssociationSet Name="FournisseurProduit" Association="Dossier.FournisseurProduit">
+            <End Role="Fournisseur" EntitySet="Fournisseurs" />
+            <End Role="Produit" EntitySet="Produits" />
+          </AssociationSet>
+          <EntitySet Name="Administrateurs" EntityType="Dossier.Administrateur" />
+          <EntitySet Name="Images" EntityType="Dossier.Image" />
+          <AssociationSet Name="ClientImage" Association="Dossier.ClientImage">
+            <End Role="Client" EntitySet="Clients" />
+            <End Role="Image" EntitySet="Images" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nom" Type="String" Nullable="false" MaxLength="150" />
+          <Property Name="Prenom" Type="String" Nullable="false" MaxLength="150" />
+          <Property Name="Adresse" Type="String" Nullable="false" MaxLength="250" />
+          <Property Name="CodePostal" Type="String" Nullable="false" MaxLength="15" />
+          <Property Name="Courriel" Type="String" Nullable="false" MaxLength="250" />
+          <Property Name="DateInscription" Type="DateTime" Nullable="false" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+          <Property Name="Note" Type="String" Nullable="false" />
+          <Property Name="Ville" Type="String" Nullable="false" MaxLength="250" />
+          <Property Name="Pays" Type="String" Nullable="false" MaxLength="250" />
+          <NavigationProperty Name="Sexe" Relationship="Dossier.SexeClient" FromRole="Client" ToRole="Sexe" />
+          <NavigationProperty Name="TelephoneClients" Relationship="Dossier.ClientTelephoneClient" FromRole="Client" ToRole="TelephoneClient" />
+          <NavigationProperty Name="Rencontres" Relationship="Dossier.ClientRencontre" FromRole="Client" ToRole="Rencontre" />
+          <NavigationProperty Name="Achats" Relationship="Dossier.ClientAchat" FromRole="Client" ToRole="Achat" />
+          <NavigationProperty Name="Images" Relationship="Dossier.ClientImage" FromRole="Client" ToRole="Image" />
+          <Property Name="Pathologie" Type="String" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TelephoneClient">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Telephone" Type="String" Nullable="false" MaxLength="50" />
+          <Property Name="Note" Type="String" Nullable="false" />
+          <NavigationProperty Name="Client" Relationship="Dossier.ClientTelephoneClient" FromRole="TelephoneClient" ToRole="Client" />
+          <NavigationProperty Name="TypeTelephones" Relationship="Dossier.TelephoneClientTypeTelephone" FromRole="TelephoneClient" ToRole="TypeTelephone" />
+        </EntityType>
+        <EntityType Name="TypeTelephone">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Lieu" Type="String" Nullable="false" MaxLength="150" />
+          <NavigationProperty Name="TelephoneClient" Relationship="Dossier.TelephoneClientTypeTelephone" FromRole="TypeTelephone" ToRole="TelephoneClient" />
+        </EntityType>
+        <EntityType Name="Produit">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nom" Type="String" Nullable="false" MaxLength="150" />
+          <Property Name="PrixCoutant" Type="Double" Nullable="false" />
+          <Property Name="PrixVendant" Type="Double" Nullable="false" />
+          <Property Name="QuantiteEnStock" Type="Int32" Nullable="false" />
+          <Property Name="Note" Type="String" Nullable="false" />
+          <NavigationProperty Name="Achat" Relationship="Dossier.AchatProduit" FromRole="Produit" ToRole="Achat" />
+          <NavigationProperty Name="Fournisseur" Relationship="Dossier.FournisseurProduit" FromRole="Produit" ToRole="Fournisseur" />
+        </EntityType>
+        <EntityType Name="Fournisseur">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nom" Type="String" Nullable="false" MaxLength="150" />
+          <Property Name="Adresse" Type="String" Nullable="false" MaxLength="250" />
+          <Property Name="Actif" Type="Boolean" Nullable="false" />
+          <Property Name="Note" Type="String" Nullable="false" />
+          <Property Name="Ville" Type="String" Nullable="false" MaxLength="250" />
+          <Property Name="Pays" Type="String" Nullable="false" MaxLength="250" />
+          <NavigationProperty Name="TelephoneFournisseurs" Relationship="Dossier.FournisseurTelephoneFournisseur" FromRole="Fournisseur" ToRole="TelephoneFournisseur" />
+          <NavigationProperty Name="Produits" Relationship="Dossier.FournisseurProduit" FromRole="Fournisseur" ToRole="Produit" />
+          <Property Name="CodePostal" Type="String" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TelephoneFournisseur">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Telephone" Type="String" Nullable="false" MaxLength="50" />
+          <Property Name="Note" Type="String" Nullable="false" />
+          <NavigationProperty Name="Fournisseur" Relationship="Dossier.FournisseurTelephoneFournisseur" FromRole="TelephoneFournisseur" ToRole="Fournisseur" />
+        </EntityType>
+        <EntityType Name="Sexe">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Categorie" Type="String" Nullable="false" MaxLength="50" />
+          <NavigationProperty Name="Clients" Relationship="Dossier.SexeClient" FromRole="Sexe" ToRole="Client" />
+        </EntityType>
+        <EntityType Name="Achat">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Note" Type="String" Nullable="false" />
+          <Property Name="DateAchat" Type="DateTime" Nullable="false" />
+          <Property Name="Quantite" Type="Double" Nullable="false" />
+          <NavigationProperty Name="Client" Relationship="Dossier.ClientAchat" FromRole="Achat" ToRole="Client" />
+          <NavigationProperty Name="Produits" Relationship="Dossier.AchatProduit" FromRole="Achat" ToRole="Produit" />
+        </EntityType>
+        <EntityType Name="Rencontre">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DateRencontre" Type="DateTime" Nullable="false" />
+          <Property Name="Note" Type="String" Nullable="false" />
+          <NavigationProperty Name="Client" Relationship="Dossier.ClientRencontre" FromRole="Rencontre" ToRole="Client" />
+        </EntityType>
+        <Association Name="SexeClient">
+          <End Type="Dossier.Sexe" Role="Sexe" Multiplicity="1" />
+          <End Type="Dossier.Client" Role="Client" Multiplicity="*" />
+        </Association>
+        <Association Name="ClientTelephoneClient">
+          <End Type="Dossier.Client" Role="Client" Multiplicity="1" />
+          <End Type="Dossier.TelephoneClient" Role="TelephoneClient" Multiplicity="*" />
+        </Association>
+        <Association Name="TelephoneClientTypeTelephone">
+          <End Type="Dossier.TelephoneClient" Role="TelephoneClient" Multiplicity="*" />
+          <End Type="Dossier.TypeTelephone" Role="TypeTelephone" Multiplicity="1" />
+        </Association>
+        <Association Name="FournisseurTelephoneFournisseur">
+          <End Type="Dossier.Fournisseur" Role="Fournisseur" Multiplicity="1" />
+          <End Type="Dossier.TelephoneFournisseur" Role="TelephoneFournisseur" Multiplicity="*" />
+        </Association>
+        <Association Name="ClientRencontre">
+          <End Type="Dossier.Client" Role="Client" Multiplicity="1" />
+          <End Type="Dossier.Rencontre" Role="Rencontre" Multiplicity="*" />
+        </Association>
+        <Association Name="ClientAchat">
+          <End Type="Dossier.Client" Role="Client" Multiplicity="1" />
+          <End Type="Dossier.Achat" Role="Achat" Multiplicity="*" />
+        </Association>
+        <Association Name="AchatProduit">
+          <End Type="Dossier.Achat" Role="Achat" Multiplicity="*" />
+          <End Type="Dossier.Produit" Role="Produit" Multiplicity="1" />
+        </Association>
+        <Association Name="FournisseurProduit">
+          <End Type="Dossier.Fournisseur" Role="Fournisseur" Multiplicity="1" />
+          <End Type="Dossier.Produit" Role="Produit" Multiplicity="*" />
+        </Association>
+        <EntityType Name="Administrateur">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nom" Type="String" Nullable="false" MaxLength="150" />
+          <Property Name="Prenom" Type="String" Nullable="false" MaxLength="150" />
+          <Property Name="DateInscription" Type="DateTime" Nullable="false" />
+          <Property Name="Connecte" Type="Boolean" Nullable="false" />
+          <Property Name="MotDePasse" Type="String" Nullable="false" MaxLength="150" />
+          <Property Name="NomUtilisateur" Type="String" Nullable="false" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="Image">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SourceImage" Type="String" Nullable="false" />
+          <NavigationProperty Name="Client" Relationship="Dossier.ClientImage" FromRole="Image" ToRole="Client" />
+          <Property Name="Description" Type="String" Nullable="false" />
+        </EntityType>
+        <Association Name="ClientImage">
+          <End Type="Dossier.Client" Role="Client" Multiplicity="1" />
+          <End Type="Dossier.Image" Role="Image" Multiplicity="*" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DossierStoreContainer" CdmEntityContainer="DossierContainer">
+    <EntitySetMapping Name="Clients">
+      <EntityTypeMapping TypeName="IsTypeOf(Dossier.Client)">
+        <MappingFragment StoreEntitySet="Clients">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nom" ColumnName="Nom" />
+          <ScalarProperty Name="Prenom" ColumnName="Prenom" />
+          <ScalarProperty Name="Adresse" ColumnName="Adresse" />
+          <ScalarProperty Name="CodePostal" ColumnName="CodePostal" />
+          <ScalarProperty Name="Courriel" ColumnName="Courriel" />
+          <ScalarProperty Name="DateInscription" ColumnName="DateInscription" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="Note" ColumnName="Note" />
+          <ScalarProperty Name="Ville" ColumnName="Ville" />
+          <ScalarProperty Name="Pays" ColumnName="Pays" />
+          <ScalarProperty Name="Pathologie" ColumnName="Pathologie" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TelephoneClients">
+      <EntityTypeMapping TypeName="IsTypeOf(Dossier.TelephoneClient)">
+        <MappingFragment StoreEntitySet="TelephoneClients">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+          <ScalarProperty Name="Note" ColumnName="Note" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TypeTelephones">
+      <EntityTypeMapping TypeName="IsTypeOf(Dossier.TypeTelephone)">
+        <MappingFragment StoreEntitySet="TypeTelephones">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Lieu" ColumnName="Lieu" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Produits">
+      <EntityTypeMapping TypeName="IsTypeOf(Dossier.Produit)">
+        <MappingFragment StoreEntitySet="Produits">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nom" ColumnName="Nom" />
+          <ScalarProperty Name="PrixCoutant" ColumnName="PrixCoutant" />
+          <ScalarProperty Name="PrixVendant" ColumnName="PrixVendant" />
+          <ScalarProperty Name="QuantiteEnStock" ColumnName="QuantiteEnStock" />
+          <ScalarProperty Name="Note" ColumnName="Note" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Fournisseurs">
+      <EntityTypeMapping TypeName="IsTypeOf(Dossier.Fournisseur)">
+        <MappingFragment StoreEntitySet="Fournisseurs">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nom" ColumnName="Nom" />
+          <ScalarProperty Name="Adresse" ColumnName="Adresse" />
+          <ScalarProperty Name="Actif" ColumnName="Actif" />
+          <ScalarProperty Name="Note" ColumnName="Note" />
+          <ScalarProperty Name="Ville" ColumnName="Ville" />
+          <ScalarProperty Name="Pays" ColumnName="Pays" />
+          <ScalarProperty Name="CodePostal" ColumnName="CodePostal" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TelephoneFournisseurs">
+      <EntityTypeMapping TypeName="IsTypeOf(Dossier.TelephoneFournisseur)">
+        <MappingFragment StoreEntitySet="TelephoneFournisseurs">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+          <ScalarProperty Name="Note" ColumnName="Note" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sexes">
+      <EntityTypeMapping TypeName="IsTypeOf(Dossier.Sexe)">
+        <MappingFragment StoreEntitySet="Sexes">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Categorie" ColumnName="Categorie" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Achats">
+      <EntityTypeMapping TypeName="IsTypeOf(Dossier.Achat)">
+        <MappingFragment StoreEntitySet="Achats">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Note" ColumnName="Note" />
+          <ScalarProperty Name="DateAchat" ColumnName="DateAchat" />
+          <ScalarProperty Name="Quantite" ColumnName="Quantite" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Rencontres">
+      <EntityTypeMapping TypeName="IsTypeOf(Dossier.Rencontre)">
+        <MappingFragment StoreEntitySet="Rencontres">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="DateRencontre" ColumnName="DateRencontre" />
+          <ScalarProperty Name="Note" ColumnName="Note" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Administrateurs">
+      <EntityTypeMapping TypeName="IsTypeOf(Dossier.Administrateur)">
+        <MappingFragment StoreEntitySet="Administrateurs">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nom" ColumnName="Nom" />
+          <ScalarProperty Name="Prenom" ColumnName="Prenom" />
+          <ScalarProperty Name="DateInscription" ColumnName="DateInscription" />
+          <ScalarProperty Name="Connecte" ColumnName="Connecte" />
+          <ScalarProperty Name="MotDePasse" ColumnName="MotDePasse" />
+          <ScalarProperty Name="NomUtilisateur" ColumnName="NomUtilisateur" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Images">
+      <EntityTypeMapping TypeName="IsTypeOf(Dossier.Image)">
+        <MappingFragment StoreEntitySet="Images">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="SourceImage" ColumnName="SourceImage" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="SexeClient" TypeName="Dossier.SexeClient" StoreEntitySet="Clients">
+      <EndProperty Name="Sexe">
+        <ScalarProperty Name="Id" ColumnName="Sexe_Id" />
+      </EndProperty>
+      <EndProperty Name="Client">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="ClientTelephoneClient" TypeName="Dossier.ClientTelephoneClient" StoreEntitySet="TelephoneClients">
+      <EndProperty Name="Client">
+        <ScalarProperty Name="Id" ColumnName="Client_Id" />
+      </EndProperty>
+      <EndProperty Name="TelephoneClient">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="TelephoneClientTypeTelephone" TypeName="Dossier.TelephoneClientTypeTelephone" StoreEntitySet="TelephoneClients">
+      <EndProperty Name="TypeTelephone">
+        <ScalarProperty Name="Id" ColumnName="TypeTelephones_Id" />
+      </EndProperty>
+      <EndProperty Name="TelephoneClient">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FournisseurTelephoneFournisseur" TypeName="Dossier.FournisseurTelephoneFournisseur" StoreEntitySet="TelephoneFournisseurs">
+      <EndProperty Name="Fournisseur">
+        <ScalarProperty Name="Id" ColumnName="Fournisseur_Id" />
+      </EndProperty>
+      <EndProperty Name="TelephoneFournisseur">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="ClientRencontre" TypeName="Dossier.ClientRencontre" StoreEntitySet="Rencontres">
+      <EndProperty Name="Client">
+        <ScalarProperty Name="Id" ColumnName="Client_Id" />
+      </EndProperty>
+      <EndProperty Name="Rencontre">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="ClientAchat" TypeName="Dossier.ClientAchat" StoreEntitySet="Achats">
+      <EndProperty Name="Client">
+        <ScalarProperty Name="Id" ColumnName="Client_Id" />
+      </EndProperty>
+      <EndProperty Name="Achat">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="AchatProduit" TypeName="Dossier.AchatProduit" StoreEntitySet="Achats">
+      <EndProperty Name="Produit">
+        <ScalarProperty Name="Id" ColumnName="Produits_Id" />
+      </EndProperty>
+      <EndProperty Name="Achat">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FournisseurProduit" TypeName="Dossier.FournisseurProduit" StoreEntitySet="Produits">
+      <EndProperty Name="Fournisseur">
+        <ScalarProperty Name="Id" ColumnName="Fournisseur_Id" />
+      </EndProperty>
+      <EndProperty Name="Produit">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="ClientImage" TypeName="Dossier.ClientImage" StoreEntitySet="Images">
+      <EndProperty Name="Client">
+        <ScalarProperty Name="Id" ColumnName="Client_Id" />
+      </EndProperty>
+      <EndProperty Name="Image">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Aucun" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

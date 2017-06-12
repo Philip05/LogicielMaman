@@ -1,0 +1,277 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Dossier.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="DossierStoreContainer">
+    <EntitySet Name="Clients" EntityType="Dossier.Store.Clients" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TelephoneClients" EntityType="Dossier.Store.TelephoneClients" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TypeTelephones" EntityType="Dossier.Store.TypeTelephones" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Produits" EntityType="Dossier.Store.Produits" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Fournisseurs" EntityType="Dossier.Store.Fournisseurs" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TelephoneFournisseurs" EntityType="Dossier.Store.TelephoneFournisseurs" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Sexes" EntityType="Dossier.Store.Sexes" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Achats" EntityType="Dossier.Store.Achats" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Rencontres" EntityType="Dossier.Store.Rencontres" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Administrateurs" EntityType="Dossier.Store.Administrateurs" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Images" EntityType="Dossier.Store.Images" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="SexeClient" Association="Dossier.Store.SexeClient">
+      <End Role="Sexe" EntitySet="Sexes" />
+      <End Role="Client" EntitySet="Clients" />
+    </AssociationSet>
+    <AssociationSet Name="ClientTelephoneClient" Association="Dossier.Store.ClientTelephoneClient">
+      <End Role="Client" EntitySet="Clients" />
+      <End Role="TelephoneClient" EntitySet="TelephoneClients" />
+    </AssociationSet>
+    <AssociationSet Name="TelephoneClientTypeTelephone" Association="Dossier.Store.TelephoneClientTypeTelephone">
+      <End Role="TelephoneClient" EntitySet="TelephoneClients" />
+      <End Role="TypeTelephone" EntitySet="TypeTelephones" />
+    </AssociationSet>
+    <AssociationSet Name="FournisseurTelephoneFournisseur" Association="Dossier.Store.FournisseurTelephoneFournisseur">
+      <End Role="Fournisseur" EntitySet="Fournisseurs" />
+      <End Role="TelephoneFournisseur" EntitySet="TelephoneFournisseurs" />
+    </AssociationSet>
+    <AssociationSet Name="ClientRencontre" Association="Dossier.Store.ClientRencontre">
+      <End Role="Client" EntitySet="Clients" />
+      <End Role="Rencontre" EntitySet="Rencontres" />
+    </AssociationSet>
+    <AssociationSet Name="ClientAchat" Association="Dossier.Store.ClientAchat">
+      <End Role="Client" EntitySet="Clients" />
+      <End Role="Achat" EntitySet="Achats" />
+    </AssociationSet>
+    <AssociationSet Name="AchatProduit" Association="Dossier.Store.AchatProduit">
+      <End Role="Achat" EntitySet="Achats" />
+      <End Role="Produit" EntitySet="Produits" />
+    </AssociationSet>
+    <AssociationSet Name="FournisseurProduit" Association="Dossier.Store.FournisseurProduit">
+      <End Role="Fournisseur" EntitySet="Fournisseurs" />
+      <End Role="Produit" EntitySet="Produits" />
+    </AssociationSet>
+    <AssociationSet Name="ClientImage" Association="Dossier.Store.ClientImage">
+      <End Role="Client" EntitySet="Clients" />
+      <End Role="Image" EntitySet="Images" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Clients">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nom" Type="nvarchar" Nullable="false" MaxLength="150" />
+    <Property Name="Prenom" Type="nvarchar" Nullable="false" MaxLength="150" />
+    <Property Name="Adresse" Type="nvarchar" Nullable="false" MaxLength="250" />
+    <Property Name="CodePostal" Type="nvarchar" Nullable="false" MaxLength="15" />
+    <Property Name="Courriel" Type="nvarchar" Nullable="false" MaxLength="250" />
+    <Property Name="DateInscription" Type="datetime" Nullable="false" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+    <Property Name="Note" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Ville" Type="nvarchar" Nullable="false" MaxLength="250" />
+    <Property Name="Pays" Type="nvarchar" Nullable="false" MaxLength="250" />
+    <Property Name="Pathologie" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Sexe_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TelephoneClients">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Telephone" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Note" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Client_Id" Type="int" Nullable="false" />
+    <Property Name="TypeTelephones_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TypeTelephones">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Lieu" Type="nvarchar" Nullable="false" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="Produits">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nom" Type="nvarchar" Nullable="false" MaxLength="150" />
+    <Property Name="PrixCoutant" Type="float" Nullable="false" />
+    <Property Name="PrixVendant" Type="float" Nullable="false" />
+    <Property Name="QuantiteEnStock" Type="int" Nullable="false" />
+    <Property Name="Note" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Fournisseur_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Fournisseurs">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nom" Type="nvarchar" Nullable="false" MaxLength="150" />
+    <Property Name="Adresse" Type="nvarchar" Nullable="false" MaxLength="250" />
+    <Property Name="Actif" Type="bit" Nullable="false" />
+    <Property Name="Note" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Ville" Type="nvarchar" Nullable="false" MaxLength="250" />
+    <Property Name="Pays" Type="nvarchar" Nullable="false" MaxLength="250" />
+    <Property Name="CodePostal" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TelephoneFournisseurs">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Telephone" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Note" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Fournisseur_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Sexes">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Categorie" Type="nvarchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Achats">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Note" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DateAchat" Type="datetime" Nullable="false" />
+    <Property Name="Quantite" Type="float" Nullable="false" />
+    <Property Name="Client_Id" Type="int" Nullable="false" />
+    <Property Name="Produits_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Rencontres">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DateRencontre" Type="datetime" Nullable="false" />
+    <Property Name="Note" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Client_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Administrateurs">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nom" Type="nvarchar" Nullable="false" MaxLength="150" />
+    <Property Name="Prenom" Type="nvarchar" Nullable="false" MaxLength="150" />
+    <Property Name="DateInscription" Type="datetime" Nullable="false" />
+    <Property Name="Connecte" Type="bit" Nullable="false" />
+    <Property Name="MotDePasse" Type="nvarchar" Nullable="false" MaxLength="150" />
+    <Property Name="NomUtilisateur" Type="nvarchar" Nullable="false" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="Images">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SourceImage" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Client_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="SexeClient">
+    <End Role="Sexe" Type="Dossier.Store.Sexes" Multiplicity="1" />
+    <End Role="Client" Type="Dossier.Store.Clients" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sexe">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Client">
+        <PropertyRef Name="Sexe_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ClientTelephoneClient">
+    <End Role="Client" Type="Dossier.Store.Clients" Multiplicity="1" />
+    <End Role="TelephoneClient" Type="Dossier.Store.TelephoneClients" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Client">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TelephoneClient">
+        <PropertyRef Name="Client_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TelephoneClientTypeTelephone">
+    <End Role="TelephoneClient" Type="Dossier.Store.TelephoneClients" Multiplicity="*" />
+    <End Role="TypeTelephone" Type="Dossier.Store.TypeTelephones" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="TypeTelephone">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TelephoneClient">
+        <PropertyRef Name="TypeTelephones_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FournisseurTelephoneFournisseur">
+    <End Role="Fournisseur" Type="Dossier.Store.Fournisseurs" Multiplicity="1" />
+    <End Role="TelephoneFournisseur" Type="Dossier.Store.TelephoneFournisseurs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Fournisseur">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TelephoneFournisseur">
+        <PropertyRef Name="Fournisseur_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ClientRencontre">
+    <End Role="Client" Type="Dossier.Store.Clients" Multiplicity="1" />
+    <End Role="Rencontre" Type="Dossier.Store.Rencontres" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Client">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Rencontre">
+        <PropertyRef Name="Client_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ClientAchat">
+    <End Role="Client" Type="Dossier.Store.Clients" Multiplicity="1" />
+    <End Role="Achat" Type="Dossier.Store.Achats" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Client">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Achat">
+        <PropertyRef Name="Client_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="AchatProduit">
+    <End Role="Achat" Type="Dossier.Store.Achats" Multiplicity="*" />
+    <End Role="Produit" Type="Dossier.Store.Produits" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Produit">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Achat">
+        <PropertyRef Name="Produits_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FournisseurProduit">
+    <End Role="Fournisseur" Type="Dossier.Store.Fournisseurs" Multiplicity="1" />
+    <End Role="Produit" Type="Dossier.Store.Produits" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Fournisseur">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Produit">
+        <PropertyRef Name="Fournisseur_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ClientImage">
+    <End Role="Client" Type="Dossier.Store.Clients" Multiplicity="1" />
+    <End Role="Image" Type="Dossier.Store.Images" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Client">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Image">
+        <PropertyRef Name="Client_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

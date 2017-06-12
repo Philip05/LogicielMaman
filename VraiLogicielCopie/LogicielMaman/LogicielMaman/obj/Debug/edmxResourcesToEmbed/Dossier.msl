@@ -1,0 +1,196 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DossierStoreContainer" CdmEntityContainer="DossierContainer">
+    <EntitySetMapping Name="Clients">
+      <EntityTypeMapping TypeName="IsTypeOf(Dossier.Client)">
+        <MappingFragment StoreEntitySet="Clients">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nom" ColumnName="Nom" />
+          <ScalarProperty Name="Prenom" ColumnName="Prenom" />
+          <ScalarProperty Name="Adresse" ColumnName="Adresse" />
+          <ScalarProperty Name="CodePostal" ColumnName="CodePostal" />
+          <ScalarProperty Name="Courriel" ColumnName="Courriel" />
+          <ScalarProperty Name="DateInscription" ColumnName="DateInscription" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="Note" ColumnName="Note" />
+          <ScalarProperty Name="Ville" ColumnName="Ville" />
+          <ScalarProperty Name="Pays" ColumnName="Pays" />
+          <ScalarProperty Name="Pathologie" ColumnName="Pathologie" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TelephoneClients">
+      <EntityTypeMapping TypeName="IsTypeOf(Dossier.TelephoneClient)">
+        <MappingFragment StoreEntitySet="TelephoneClients">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+          <ScalarProperty Name="Note" ColumnName="Note" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TypeTelephones">
+      <EntityTypeMapping TypeName="IsTypeOf(Dossier.TypeTelephone)">
+        <MappingFragment StoreEntitySet="TypeTelephones">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Lieu" ColumnName="Lieu" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Produits">
+      <EntityTypeMapping TypeName="IsTypeOf(Dossier.Produit)">
+        <MappingFragment StoreEntitySet="Produits">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nom" ColumnName="Nom" />
+          <ScalarProperty Name="PrixCoutant" ColumnName="PrixCoutant" />
+          <ScalarProperty Name="PrixVendant" ColumnName="PrixVendant" />
+          <ScalarProperty Name="QuantiteEnStock" ColumnName="QuantiteEnStock" />
+          <ScalarProperty Name="Note" ColumnName="Note" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Fournisseurs">
+      <EntityTypeMapping TypeName="IsTypeOf(Dossier.Fournisseur)">
+        <MappingFragment StoreEntitySet="Fournisseurs">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nom" ColumnName="Nom" />
+          <ScalarProperty Name="Adresse" ColumnName="Adresse" />
+          <ScalarProperty Name="Actif" ColumnName="Actif" />
+          <ScalarProperty Name="Note" ColumnName="Note" />
+          <ScalarProperty Name="Ville" ColumnName="Ville" />
+          <ScalarProperty Name="Pays" ColumnName="Pays" />
+          <ScalarProperty Name="CodePostal" ColumnName="CodePostal" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TelephoneFournisseurs">
+      <EntityTypeMapping TypeName="IsTypeOf(Dossier.TelephoneFournisseur)">
+        <MappingFragment StoreEntitySet="TelephoneFournisseurs">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+          <ScalarProperty Name="Note" ColumnName="Note" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sexes">
+      <EntityTypeMapping TypeName="IsTypeOf(Dossier.Sexe)">
+        <MappingFragment StoreEntitySet="Sexes">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Categorie" ColumnName="Categorie" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Achats">
+      <EntityTypeMapping TypeName="IsTypeOf(Dossier.Achat)">
+        <MappingFragment StoreEntitySet="Achats">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Note" ColumnName="Note" />
+          <ScalarProperty Name="DateAchat" ColumnName="DateAchat" />
+          <ScalarProperty Name="Quantite" ColumnName="Quantite" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Rencontres">
+      <EntityTypeMapping TypeName="IsTypeOf(Dossier.Rencontre)">
+        <MappingFragment StoreEntitySet="Rencontres">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="DateRencontre" ColumnName="DateRencontre" />
+          <ScalarProperty Name="Note" ColumnName="Note" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Administrateurs">
+      <EntityTypeMapping TypeName="IsTypeOf(Dossier.Administrateur)">
+        <MappingFragment StoreEntitySet="Administrateurs">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nom" ColumnName="Nom" />
+          <ScalarProperty Name="Prenom" ColumnName="Prenom" />
+          <ScalarProperty Name="DateInscription" ColumnName="DateInscription" />
+          <ScalarProperty Name="Connecte" ColumnName="Connecte" />
+          <ScalarProperty Name="MotDePasse" ColumnName="MotDePasse" />
+          <ScalarProperty Name="NomUtilisateur" ColumnName="NomUtilisateur" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Images">
+      <EntityTypeMapping TypeName="IsTypeOf(Dossier.Image)">
+        <MappingFragment StoreEntitySet="Images">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="SourceImage" ColumnName="SourceImage" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="SexeClient" TypeName="Dossier.SexeClient" StoreEntitySet="Clients">
+      <EndProperty Name="Sexe">
+        <ScalarProperty Name="Id" ColumnName="Sexe_Id" />
+      </EndProperty>
+      <EndProperty Name="Client">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="ClientTelephoneClient" TypeName="Dossier.ClientTelephoneClient" StoreEntitySet="TelephoneClients">
+      <EndProperty Name="Client">
+        <ScalarProperty Name="Id" ColumnName="Client_Id" />
+      </EndProperty>
+      <EndProperty Name="TelephoneClient">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="TelephoneClientTypeTelephone" TypeName="Dossier.TelephoneClientTypeTelephone" StoreEntitySet="TelephoneClients">
+      <EndProperty Name="TypeTelephone">
+        <ScalarProperty Name="Id" ColumnName="TypeTelephones_Id" />
+      </EndProperty>
+      <EndProperty Name="TelephoneClient">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FournisseurTelephoneFournisseur" TypeName="Dossier.FournisseurTelephoneFournisseur" StoreEntitySet="TelephoneFournisseurs">
+      <EndProperty Name="Fournisseur">
+        <ScalarProperty Name="Id" ColumnName="Fournisseur_Id" />
+      </EndProperty>
+      <EndProperty Name="TelephoneFournisseur">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="ClientRencontre" TypeName="Dossier.ClientRencontre" StoreEntitySet="Rencontres">
+      <EndProperty Name="Client">
+        <ScalarProperty Name="Id" ColumnName="Client_Id" />
+      </EndProperty>
+      <EndProperty Name="Rencontre">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="ClientAchat" TypeName="Dossier.ClientAchat" StoreEntitySet="Achats">
+      <EndProperty Name="Client">
+        <ScalarProperty Name="Id" ColumnName="Client_Id" />
+      </EndProperty>
+      <EndProperty Name="Achat">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="AchatProduit" TypeName="Dossier.AchatProduit" StoreEntitySet="Achats">
+      <EndProperty Name="Produit">
+        <ScalarProperty Name="Id" ColumnName="Produits_Id" />
+      </EndProperty>
+      <EndProperty Name="Achat">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FournisseurProduit" TypeName="Dossier.FournisseurProduit" StoreEntitySet="Produits">
+      <EndProperty Name="Fournisseur">
+        <ScalarProperty Name="Id" ColumnName="Fournisseur_Id" />
+      </EndProperty>
+      <EndProperty Name="Produit">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="ClientImage" TypeName="Dossier.ClientImage" StoreEntitySet="Images">
+      <EndProperty Name="Client">
+        <ScalarProperty Name="Id" ColumnName="Client_Id" />
+      </EndProperty>
+      <EndProperty Name="Image">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>
